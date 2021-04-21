@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import API from './utils/API';
 
 
 function App() {
@@ -15,9 +16,16 @@ function App() {
     })
   }
 
+const formSubmit = event=>{
+  event.preventDefault();
+  API.login(loginFormState).then(loginData=>{
+    console.log(loginData)
+  })
+}
+
   return (
     <div className="App">
-     <form>
+     <form onSubmit={formSubmit}>
        <input onChange={inputChange} value={loginFormState.email} type="text" name="email" placeholder="email" />
        <input onChange={inputChange} value={loginFormState.password} type="password" name="password" />
        <input type="submit" value="login" />
